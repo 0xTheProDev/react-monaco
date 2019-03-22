@@ -1,0 +1,18 @@
+[ignore]
+dist
+es
+tests
+
+[include]
+
+[libs]
+node_modules/*
+
+[lints]
+
+[options]
+module.ignore_non_literal_requires=true
+module.name_mapper='^monaco-editor$' -> '<PROJECT_ROOT>/node_modules/monaco-editor/esm/vs/editor/editor.main.js'
+
+module.system=haste
+all=false

@@ -1,3 +1,11 @@
-'use strict';
+// @flow
+/**
+ * Export Module for Monaco Editor React Wrapper
+ */
 
-//# sourceMappingURL=index.js.map
+import { MonacoCodeEditor } from './editor';
+
+export {
+  MonacoCodeEditor as default,
+  MonacoCodeEditor,
+};
