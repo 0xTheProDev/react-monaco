@@ -6,31 +6,35 @@ import resolve from 'rollup-plugin-node-resolve';
 
 import pkg from './package.json';
 
+const banner =
+`/**
+ * ${pkg.name} - ${pkg.version} : React Wrapper for Monaco Editor
+ * Author: ${pkg.author}
+ * ${pkg.license} License
+ */
+`;
+
 export default {
   input: 'src/index.js',
   output: [
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
+      strict: true,
+      banner: banner
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: true
+      sourcemap: true,
+      strict: true,
+      banner: banner
     }
   ],
   plugins: [
     external(),
-    babel({
-      exclude: 'node_modules/**',
-      plugins: [
-        'transform-decorators-legacy',
-        [ 'flow-runtime', { annotate: true } ],
-        'transform-flow-strip-types',
-        'external-helpers'
-      ]
-    }),
+    babel({ runtimeHelpers: true }),
     resolve(),
     postcss(),
     commonjs()

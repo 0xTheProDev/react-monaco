@@ -1,6 +1,6 @@
 [ignore]
 dist
-es
+esm
 tests
 
 [include]

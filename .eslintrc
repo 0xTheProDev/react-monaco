@@ -1,6 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": [
+    "eslint:recommended",
     "standard",
     "standard-react"
   ],
@@ -14,7 +15,10 @@
     "sourceType": "module"
   },
   "rules": {
-    "space-before-function-paren": 0,
-    "react/jsx-boolean-value": 0
+    "comma-dangle": [ "error", "always-multiline" ],
+    "no-extra-boolean-cast": "warn",
+    "react/jsx-boolean-value": 0,
+    "semi": [ "error", "always" ],
+    "space-before-function-paren": 0
   }
 }
