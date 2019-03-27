@@ -1,8 +1,9 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss'
+import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
+import minify from 'rollup-plugin-minify';
 
 import pkg from './package.json';
 
@@ -26,7 +27,7 @@ export default {
     },
     {
       file: pkg.module,
-      format: 'es',
+      format: 'esm',
       sourcemap: true,
       strict: true,
       banner: banner
@@ -37,6 +38,8 @@ export default {
     babel({ runtimeHelpers: true }),
     resolve(),
     postcss(),
-    commonjs()
+    commonjs(),
+    minify({ cjs: pkg.min })
   ]
-}
+};
+
