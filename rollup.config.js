@@ -4,6 +4,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import filesize from 'rollup-plugin-filesize';
 import postcss from 'rollup-plugin-postcss';
 import progress from 'rollup-plugin-progress';
+import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
 import minify from 'rollup-plugin-minify';
 
@@ -22,12 +23,9 @@ const banner =
 const commonPlugins = [
   progress(),
   babel({ runtimeHelpers: true }),
-  external(),
-  resolve(),
+  resolve({ browser: true }),
   postcss(),
-  commonjs(),
-  filesize(),
-  (isProduction && minify({ cjs: pkg.browser }))
+  filesize()
 ];
 
 const buildTasks = [{
@@ -48,26 +46,49 @@ const buildTasks = [{
       banner: banner
     }
   ],
-  external: [ 'monaco-editor' ],
-  plugins: commonPlugins
+  plugins: [
+    external(),
+    ...commonPlugins,
+    commonjs(),
+    (isProduction && minify({ cjs: pkg.browser }))
+  ]
 }];
 
-const devBuildTasks = [ /* ...buildTasks, */ {
+const devBuildTasks = {
   input: pkg.example.entry,
   output: {
     file: pkg.example.main,
     format: 'umd',
-    sourcemap: true,
-    strict: true
+    sourcemap: 'inline',
+    strict: true,
   },
-  plugins: [ ...commonPlugins,
+  plugins: [
+    ...commonPlugins,
     commonjs({
+      include: 'node_modules/**',
+      exclude: [
+        'node_modules/process-es6/**',
+      ],
       namedExports: {
-        'node_modules/react/index.js': ['Children', 'Component', 'PropTypes', 'createElement'],
-        'node_modules/react-dom/index.js': ['render'],
+        'node_modules/react/react.js': [
+          'cloneElement', 
+          'createElement', 
+          'PropTypes', 
+          'Children', 
+          'Component'
+        ],
+        'node_modules/react-dom/index.js': [ 'render' ],
+        'node_modules/monaco-editor/esm/vs/editor/editor.main.js': [
+          'create',
+          'setModelLanguage',
+          'setTheme'
+        ]
       }
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     })
   ]
-}];
+};
 
 export default (isProduction ? buildTasks : devBuildTasks);
