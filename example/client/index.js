@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Editor from '../shared/editor';
+import App from '../shared/app';
 
-ReactDOM.render(<Editor />, document.getElementById('react-app'));
+ReactDOM.render(<App />, document.getElementById('react-app'));

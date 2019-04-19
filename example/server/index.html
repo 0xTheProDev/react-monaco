@@ -4,10 +4,48 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-  <title>React Monaco Wrapper Example</title>
+  <title>React Monaco Wrapper | Browser Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 </head>
 <body>
-  <div id="react-app"></div>
+  <style>
+    header .hero-body {
+      padding-bottom: 0;
+    }
+    #react-app {
+      margin: 0 25px;
+    }
+    #react-app .section {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    #react-app .select {
+      padding: 0 10px;
+    }
+    #copyright {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  </style>
+  <header class="hero">
+    <div class="hero-body">
+      <div class="container-fluid">
+        <h1 class="title">
+          React Monaco Wrapper - v1.0.0
+        </h1>
+        <h2 class="subtitle">
+          React wrapper over Monaco Editor
+        </h2>
+      </div>
+    </div>
+  </header>
+  <div class="container-fluid" id="react-app"></div>
+  <footer class="footer" id="copyright">
+    <div class="content has-text-centered">
+      &copy; All rights reserved by <a href="https://progyan1997.github.io">Progyan Bhattacharya</a>. The source code is licensed under
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+    </div>
+  </footer>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="main.js"></script>

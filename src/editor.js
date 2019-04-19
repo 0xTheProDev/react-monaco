@@ -108,42 +108,23 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
 
     const editorOptions: monaco.editor.IEditorOptions = { ...options };
 
-    if (disableScrollBeyondLastColumn === true) {
-      editorOptions.scrollBeyondLastColumn = 0;
-    }
+    editorOptions.lineNumbers = hideLineNumbers === true ? 'off' : true;
+    editorOptions.minimap = editorOptions.minimap || {
+      enabled: !(hideMinimap === true)
+    };
 
-    if (disableScrollBeyondLastLine === true) {
-      editorOptions.scrollBeyondLastLine = false;
-    }
+    editorOptions.readOnly = (readOnly === true);
+    editorOptions.renderFinalNewline = (renderEOL === true);
+
+    editorOptions.scrollbar = editorOptions.scrollbar || {};
+    editorOptions.scrollbar.horizontal = hideHorizontalScrollbar === true ? 'hidden' : 'auto';
+    editorOptions.scrollbar.vertical = hideVerticalScrollbar === true ? 'hidden' : 'auto';
+
+    editorOptions.scrollBeyondLastColumn = disableScrollBeyondLastColumn === true ? 0 : 5;
+    editorOptions.scrollBeyondLastLine = !(disableScrollBeyondLastLine === true);
 
     if (!!language) {
       editorOptions.language = language;
-    }
-
-    if (hideHorizontalScrollbar === true) {
-      editorOptions.scrollbar.horizontal = 'hidden';
-    }
-
-    if (hideLineNumbers === true) {
-      editorOptions.lineNumbers = 'off';
-    }
-
-    if (hideMinimap === true) {
-      editorOptions.minimap = {
-        enabled: false,
-      };
-    }
-
-    if (hideVerticalScrollbar === true) {
-      editorOptions.scrollbar.vertical = 'hidden';
-    }
-
-    if (readOnly === true) {
-      editorOptions.readOnly = true;
-    }
-
-    if (renderEOL === true) {
-      editorOptions.renderFinalNewline = true;
     }
 
     if (!!value) {
@@ -197,8 +178,9 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
       monaco.editor.setModelLanguage(editor.getModel(), language);
     }
 
-    if (theme !== oldTheme) {
-      monaco.editor.setTheme(theme);
+    const modifiedTheme = convertTheme(theme);
+    if (theme !== oldTheme || modifiedTheme !== oldTheme) {
+      monaco.editor.setTheme(modifiedTheme);
     }
 
     if (value !== oldValue) {

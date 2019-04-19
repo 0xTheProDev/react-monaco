@@ -1,58 +1,34 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 
 import MonacoEditor from '../../src';
-import template from './template';
 
-type Props = {};
-
-type State = {
+type Props = {
   language: string,
   code: string,
+  theme: string,
+  options: Object,
+  onContentChange: (value: string) => void,
 };
 
-class EditorContainer extends Component<Props, State> {
-  state = {
-    language: 'c',
-    code: template['c'],
-  };
+const Editor = ({ language, code, theme, options, onContentChange }: Props) => (
+  <main className='tile is-ancestor'>
+    <div className='tile is-parent'>
+      <article className='tile is-child box'>
+        <MonacoEditor
+          {...{
+            ...options,
+            height: 400,
+            width: '100%',
+            value: code,
+            language,
+            onContentChange,
+            theme
+          }}
+        />
+      </article>
+    </div>
+  </main>
+);
 
-  onLanguageChange = (ev: React.SyntheticEvent<HTMLSelectElement, Event>) => {
-    const newLang: string = ev.target.value;
-    const code: string = template[newLang] || '';
-    this.setState({ language: newLang, code });
-  }
-
-  onContentChange = (value: string) => {
-    this.setState({ code: value });
-  }
-
-  render() {
-    const { language, code } = this.state;
-    const { onLanguageChange, onContentChange } = this;
-
-    return (
-      <React.Fragment>
-        <section className='lang_options'>
-          <select defaultValue={language} onChange={onLanguageChange}>
-            <option value='c'>C</option>
-            <option value='cpp'>C++</option>
-            <option value='java'>Java</option>
-            <option value='python'>Python</option>
-          </select>
-        </section>
-        <main className='app_container'>
-          <MonacoEditor
-            height={800}
-            width='100%'
-            language={language}
-            value={code}
-            onContentChange={onContentChange}
-          />
-        </main>
-      </React.Fragment>
-    );
-  }
-}
-
-export default EditorContainer;
+export default Editor;
