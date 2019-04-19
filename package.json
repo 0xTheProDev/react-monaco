@@ -41,23 +41,19 @@
     "flow": "flow",
     "lint": "eslint src/**/*.js",
     "prepublish": "npm run clean && npm run build",
-    "start": "NODE_ENV=development rollup -c -w",
+    "start": "node example/server/app.js & NODE_ENV=development rollup -c -w",
     "test": "cross-env CI=1 jest"
   },
   "dependencies": {
     "classnames": "2.2.6",
-    "flow-runtime": "0.17.0",
     "monaco-editor": "0.16.2",
     "react": "16.4.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
-    "@babel/plugin-proposal-decorators": "7.4.0",
     "@babel/preset-env": "7.4.2",
-    "@babel/register": "7.4.0",
     "babel-eslint": "8.2.5",
     "babel-jest": "24.5.0",
-    "babel-plugin-flow-runtime": "0.18.0",
     "babel-preset-react-app": "7.0.2",
     "cross-env": "5.1.4",
     "enzyme": "3.9.0",

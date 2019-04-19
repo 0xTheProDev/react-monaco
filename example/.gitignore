@@ -1,0 +1,5 @@
+# Build assets
+build/
+
+# Compiled Server Script
+server.js

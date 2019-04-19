@@ -12,32 +12,17 @@ module.exports = {
             "last 1 Edge version"
           ],
           electron: "1.8",
-          node: true
+          node: true,
         },
-        useBuiltIns: false
+        useBuiltIns: false,
       }
     ],
     [
       "react-app",
       {
-        flow: true
-      }
-    ]
-  ],
-  plugins: [
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        legacy: true
+        flow: true,
       }
     ],
-    [
-      "flow-runtime",
-      {
-        annotate: false,
-        assert: true,
-        warn: true
-      }
-    ]
-  ]
+  ],
+  plugins: [],
 };

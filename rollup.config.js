@@ -21,6 +21,7 @@ const banner =
 `;
 
 const commonPlugins = [
+  external(),
   progress(),
   babel({ runtimeHelpers: true }),
   resolve({ browser: true }),
@@ -43,11 +44,11 @@ const buildTasks = [{
       format: 'esm',
       sourcemap: true,
       strict: true,
+      preserveModules: true,
       banner: banner
     }
   ],
   plugins: [
-    external(),
     ...commonPlugins,
     commonjs(),
     (isProduction && minify({ cjs: pkg.browser }))
@@ -59,7 +60,11 @@ const devBuildTasks = {
   output: {
     file: pkg.example.main,
     format: 'umd',
-    sourcemap: 'inline',
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
+    sourcemap: true,
     strict: true,
   },
   plugins: [
@@ -69,21 +74,6 @@ const devBuildTasks = {
       exclude: [
         'node_modules/process-es6/**',
       ],
-      namedExports: {
-        'node_modules/react/react.js': [
-          'cloneElement', 
-          'createElement', 
-          'PropTypes', 
-          'Children', 
-          'Component'
-        ],
-        'node_modules/react-dom/index.js': [ 'render' ],
-        'node_modules/monaco-editor/esm/vs/editor/editor.main.js': [
-          'create',
-          'setModelLanguage',
-          'setTheme'
-        ]
-      }
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
