@@ -1,6 +1,6 @@
 {
   "name": "react-monaco",
-  "version": "1.0.0",
+  "version": "0.1.0-beta.1",
   "description": "React wrapper over Monaco Editor",
   "entry": "src/index.js",
   "main": "dist/index.js",
