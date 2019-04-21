@@ -6,8 +6,12 @@
 # testing
 /coverage
 
+# local build
+example/build
+
 # production
-/dist
+/cjs
+/umd
 /esm
 
 # misc

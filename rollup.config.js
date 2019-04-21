@@ -12,6 +12,8 @@ import pkg from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const minified = name => name.replace('.js', '.min.js');
+
 const banner =
 `/**
  * ${pkg.name} - ${pkg.version} : React Wrapper for Monaco Editor
@@ -23,10 +25,14 @@ const banner =
 const commonPlugins = [
   external(),
   progress(),
-  babel({ runtimeHelpers: true }),
-  resolve({ browser: true }),
+  babel({
+    runtimeHelpers: true,
+  }),
+  resolve({
+    mainFields: [ 'module', 'main', 'browser' ],
+  }),
   postcss(),
-  filesize()
+  filesize(),
 ];
 
 const buildTasks = [{
@@ -37,7 +43,18 @@ const buildTasks = [{
       format: 'cjs',
       sourcemap: true,
       strict: true,
-      banner: banner
+      banner: banner,
+    },
+    {
+      file: pkg.browser,
+      format: 'umd',
+      name: pkg.name,
+      sourcemap: true,
+      strict: true,
+      globals: {
+        react: 'React',
+      },
+      banner: banner,
     },
     {
       file: pkg.module,
@@ -45,13 +62,16 @@ const buildTasks = [{
       sourcemap: true,
       strict: true,
       preserveModules: true,
-      banner: banner
-    }
+      banner: banner,
+    },
   ],
   plugins: [
     ...commonPlugins,
     commonjs(),
-    (isProduction && minify({ cjs: pkg.browser }))
+    minify({
+      cjs: minified(pkg.main),
+      umd: minified(pkg.browser),
+    }),
   ]
 }];
 

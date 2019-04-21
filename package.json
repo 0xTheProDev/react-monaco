@@ -3,16 +3,17 @@
   "version": "0.1.0-beta.1",
   "description": "React wrapper over Monaco Editor",
   "entry": "src/index.js",
-  "main": "dist/index.js",
-  "browser": "dist/index.min.js",
+  "main": "cjs/index.js",
+  "browser": "umd/index.js",
   "module": "esm/index.js",
   "example": {
     "main": "example/build/main.js",
     "entry": "example/client/index.js"
   },
   "files": [
-    "dist/*",
+    "cjs/*",
     "esm/*",
+    "umd/*",
     "LICENSE"
   ],
   "engines": {
@@ -37,7 +38,7 @@
   "scripts": {
     "build:local": "NODE_ENV=development rollup -c",
     "build": "NODE_ENV=production rollup -c",
-    "clean": "rimraf lib esm",
+    "clean": "rimraf cjs esm umd",
     "flow": "flow",
     "lint": "eslint src/**/*.js",
     "prepublish": "npm run clean && npm run build",
