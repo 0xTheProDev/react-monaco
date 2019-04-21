@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 
 import NavBar from './navbar';
 import Editor from './editor';
@@ -14,7 +14,7 @@ type State = {
   options: Object,
 };
 
-class App extends Component<Props, State> {
+class App extends React.Component<Props, State> {
   state = {
     language: 'c',
     code: template['c'],

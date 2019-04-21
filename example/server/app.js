@@ -3,6 +3,8 @@ const http = require('http');
 const path = require('path');
 const urlParser = require('url');
 
+const package = require('../../package.json');
+
 const html = path.join(__dirname, './index.html');
 const js = path.join(__dirname, '../build/main.js');
 
@@ -22,7 +24,10 @@ http.createServer(function (req, res) {
       res.writeHead(200, { 'Content-Type': 'text/javascript' });
       res.write(map);
     } else {
-      const body = fs.readFileSync(html).toString();
+      const body = fs.readFileSync(html).toString()
+                  .replace('<!-- %package.name -->', package.name)
+                  .replace('<!-- %package.version -->', package.version)
+                  .replace('<!-- %package.description -->', package.description);
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.write(body);
     }

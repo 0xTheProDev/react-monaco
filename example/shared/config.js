@@ -7,7 +7,7 @@ type Props = {
 };
 
 const EditorConfig = ({ options, onOptionChange }: Props) => (
-  <div className='dropdown is-hoverable'>
+  <div className='dropdown is-success is-hoverable'>
     <div className='dropdown-trigger'>
       <button class='button' aria-haspopup='true' aria-controls='dropdown-menu'>
         <span>Editor Settings</span>
