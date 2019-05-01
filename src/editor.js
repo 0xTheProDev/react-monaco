@@ -110,7 +110,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
 
     editorOptions.lineNumbers = hideLineNumbers === true ? 'off' : true;
     editorOptions.minimap = editorOptions.minimap || {
-      enabled: !(hideMinimap === true)
+      enabled: !(hideMinimap === true),
     };
 
     editorOptions.readOnly = (readOnly === true);
@@ -123,16 +123,16 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
     editorOptions.scrollBeyondLastColumn = disableScrollBeyondLastColumn === true ? 0 : 5;
     editorOptions.scrollBeyondLastLine = !(disableScrollBeyondLastLine === true);
 
-    if (!!language) {
+    if (language) {
       editorOptions.language = language;
     }
 
-    if (!!value) {
+    if (value) {
       editorOptions.value = value;
       this.value = value;
     }
 
-    if (!!theme) {
+    if (theme) {
       editorOptions.theme = convertTheme(theme);
     }
 
@@ -198,7 +198,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
       editorWillUnmount,
     } = props;
 
-    if (!!editor) {
+    if (editor) {
       editorWillUnmount(editor);
       setTimeout(() => editor.dispose(), 0);
     }
@@ -245,8 +245,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
 
     return (
       <div className={classNames('monaco-editor-wrapper', wrapperClass)}>
-        <div ref={editorNode} className='monaco-editor-container' style={style}>
-        </div>
+        <div ref={editorNode} className='monaco-editor-container' style={style} />
         { children }
       </div>
     );

@@ -6,10 +6,6 @@
   "main": "cjs/index.js",
   "browser": "umd/index.js",
   "module": "esm/index.js",
-  "example": {
-    "main": "example/build/main.js",
-    "entry": "example/client/index.js"
-  },
   "files": [
     "cjs/*",
     "esm/*",
@@ -37,13 +33,12 @@
   },
   "homepage": "https://github.com/Progyan1997/react-monaco#readme",
   "scripts": {
-    "build:local": "NODE_ENV=development rollup -c",
     "build": "NODE_ENV=production rollup -c",
     "clean": "rimraf cjs esm umd",
     "flow": "flow",
     "lint": "eslint src/**/*.js",
     "prepublish": "npm run clean && npm run build",
-    "start": "node example/server/app.js & NODE_ENV=development rollup -c -w",
+    "start": "NODE_ENV=development webpack-dev-server --hot --inline",
     "test": "cross-env CI=1 jest"
   },
   "dependencies": {
@@ -56,8 +51,10 @@
     "@babel/preset-env": "7.4.2",
     "babel-eslint": "8.2.5",
     "babel-jest": "24.5.0",
+    "babel-loader": "^8.0.5",
     "babel-preset-react-app": "7.0.2",
     "cross-env": "5.1.4",
+    "css-loader": "^2.1.1",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
     "eslint": "5.0.1",
@@ -68,26 +65,32 @@
     "eslint-plugin-promise": "4.0.0",
     "eslint-plugin-react": "7.10.0",
     "eslint-plugin-standard": "3.1.0",
+    "file-loader": "3.0.1",
     "flow-bin": "0.95.1",
     "ignore-styles": "5.0.1",
     "jest": "24.5.0",
     "jest-transform-css": "2.0.0",
     "jsdom": "14.0.0",
+    "monaco-editor-webpack-plugin": "1.7.0",
     "react-dom": "16.8.5",
     "rimraf": "2.6.3",
     "rollup": "0.64.1",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.1.3",
     "rollup-plugin-filesize": "6.0.1",
-    "rollup-plugin-minify": "1.0.3",
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-postcss": "2.0.3",
     "rollup-plugin-progress": "1.1.1",
-    "rollup-plugin-replace": "2.1.1"
+    "style-loader": "0.23.1",
+    "webpack": "4.30.0",
+    "webpack-cli": "3.3.1",
+    "webpack-dev-server": "3.3.1"
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "webpack": "^4.0.0",
+    "monaco-editor-webpack-plugin": "1.7.0"
   },
   "jest": {
     "collectCoverage": true,

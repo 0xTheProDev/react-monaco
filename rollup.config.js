@@ -3,15 +3,9 @@ import commonjs from 'rollup-plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
 import postcss from 'rollup-plugin-postcss';
 import progress from 'rollup-plugin-progress';
-import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
-import minify from 'rollup-plugin-minify';
 
 import pkg from './package.json';
-
-const isProduction = process.env.NODE_ENV === 'production';
-
-const minified = name => name.replace('.js', '.min.js');
 
 const banner =
 `/**
@@ -21,19 +15,7 @@ const banner =
  */
 `;
 
-const commonPlugins = [
-  progress(),
-  babel({
-    runtimeHelpers: true,
-  }),
-  resolve({
-    mainFields: [ 'module', 'main', 'browser' ],
-  }),
-  postcss(),
-  filesize(),
-];
-
-const buildTasks = [{
+export default [{
   input: pkg.entry,
   external: [ 'react', 'monaco-editor' ],
   output: [
@@ -66,39 +48,15 @@ const buildTasks = [{
     },
   ],
   plugins: [
-    ...commonPlugins,
+    progress(),
+    babel({
+      runtimeHelpers: true,
+    }),
+    resolve({
+      mainFields: [ 'module', 'main', 'browser' ],
+    }),
+    postcss(),
+    filesize(),
     commonjs(),
-    minify({
-      cjs: minified(pkg.main),
-      umd: minified(pkg.browser),
-    }),
-  ]
+  ],
 }];
-
-const devBuildTasks = {
-  input: pkg.example.entry,
-  output: {
-    file: pkg.example.main,
-    format: 'umd',
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    },
-    sourcemap: true,
-    strict: true,
-  },
-  plugins: [
-    ...commonPlugins,
-    commonjs({
-      include: 'node_modules/**',
-      exclude: [
-        'node_modules/process-es6/**',
-      ],
-    }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
-    })
-  ]
-};
-
-export default (isProduction ? buildTasks : devBuildTasks);

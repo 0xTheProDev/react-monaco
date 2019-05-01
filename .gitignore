@@ -6,9 +6,6 @@
 # testing
 /coverage
 
-# local build
-example/build
-
 # production
 /cjs
 /umd
