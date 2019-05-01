@@ -1,6 +1,5 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
-import external from 'rollup-plugin-peer-deps-external';
 import filesize from 'rollup-plugin-filesize';
 import postcss from 'rollup-plugin-postcss';
 import progress from 'rollup-plugin-progress';
@@ -23,7 +22,6 @@ const banner =
 `;
 
 const commonPlugins = [
-  external(),
   progress(),
   babel({
     runtimeHelpers: true,
@@ -37,6 +35,7 @@ const commonPlugins = [
 
 const buildTasks = [{
   input: pkg.entry,
+  external: [ 'react', 'monaco-editor' ],
   output: [
     {
       file: pkg.main,
@@ -53,6 +52,7 @@ const buildTasks = [{
       strict: true,
       globals: {
         react: 'React',
+        'monaco-editor': 'monaco',
       },
       banner: banner,
     },
