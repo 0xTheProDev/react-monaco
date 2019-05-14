@@ -170,6 +170,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
     } = props;
 
     const editorOptions: monaco.editor.IEditorOptions = this.getEditorOptions();
+    /* istanbul ignore else  */
     if (Object.keys(editorOptions).length > 0) {
       this.editor.updateOptions(editorOptions);
     }
@@ -198,15 +199,17 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
       editorWillUnmount,
     } = props;
 
+    /* istanbul ignore else  */
     if (editor) {
       editorWillUnmount(editor);
-      setTimeout(() => editor.dispose(), 0);
+      setTimeout(editor.dispose, 0);
     }
   }
 
   /**
    * To be used for Unit and Integration testing purpose only
    */
+  /* istanbul ignore next */
   getValue(): string {
     const {
       editor,
@@ -216,6 +219,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
     return this.value;
   }
 
+  /* istanbul ignore next */
   setValue(value: string): void {
     const {
       editor,

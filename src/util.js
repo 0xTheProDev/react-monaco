@@ -2,20 +2,19 @@
 /**
  * Utility functions for Monaco Editor React Wrapper
  */
-export const noop = (): void => {};
 
-export const convertTheme = (theme: string): string => {
-  if (theme === 'light') {
-    return 'vs';
-  }
+const themeMap = {
+  'light': 'vs',
+  'dark': 'vs-dark',
+  'high-contrast': 'hc-black',
+};
 
-  if (theme === 'dark') {
-    return 'vs-dark';
-  }
-
-  if (theme === 'high-contrast') {
-    return 'hc-black';
+export function convertTheme(theme: string): string {
+  if (themeMap.hasOwnProperty(theme)) {
+    return themeMap[theme];
   }
 
   return theme;
 };
+
+export function noop(): void {};

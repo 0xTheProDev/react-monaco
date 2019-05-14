@@ -33,12 +33,12 @@
   },
   "homepage": "https://github.com/Progyan1997/react-monaco#readme",
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "clean": "rimraf cjs esm umd",
     "flow": "flow",
     "lint": "eslint src/**/*.js",
     "prepublish": "npm run clean && npm run build",
-    "start": "NODE_ENV=development webpack-dev-server --hot --inline",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline",
     "test": "cross-env CI=1 jest"
   },
   "dependencies": {
@@ -100,7 +100,8 @@
       "/jest.setup.js"
     ],
     "coverageReporters": [
-      "lcov"
+      "lcov",
+      "text"
     ],
     "globals": {
       "NODE_ENV": "test"
