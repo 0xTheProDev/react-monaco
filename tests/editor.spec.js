@@ -67,7 +67,7 @@ describe('Test Monaco Standalone Code Editor', () => {
 
   test('should render children if provided with one', () => {
     const DummyComponent = () => <h1>Hello World!</h1>;
-    const wrapper = shallow(<MonacoCodeEditor><DummyComponent/></MonacoCodeEditor>);
+    const wrapper = shallow(<MonacoCodeEditor><DummyComponent /></MonacoCodeEditor>);
     expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 

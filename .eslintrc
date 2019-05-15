@@ -7,12 +7,17 @@
   ],
   "env": {
     "es6": true,
+    "browser": true,
     "jest": true
   },
   "plugins": [
     "react"
   ],
   "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "sourceType": "module"
   },
   "rules": {
