@@ -11,8 +11,6 @@ plugins:
     channel: "eslint-5"
     config:
       config: .eslintrc
-  stylelint:
-    enabled: true
 checks:
   file-lines:
     config:
