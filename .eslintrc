@@ -18,7 +18,7 @@
   "rules": {
     "comma-dangle": [ "error", "always-multiline" ],
     "no-extra-boolean-cast": "warn",
-    "one-var": "disable",
+    "one-var": 0,
     "react/jsx-boolean-value": 0,
     "semi": [ "error", "always" ],
     "space-before-function-paren": 0
