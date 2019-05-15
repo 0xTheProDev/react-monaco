@@ -1,0 +1,39 @@
+version: "2"
+plugins:
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      count_threshold: 3
+  eslint:
+    enabled: true
+    channel: "eslint-5"
+    config:
+      config: .eslintrc
+  stylelint:
+    enabled: true
+checks:
+  file-lines:
+    config:
+      threshold: 1000
+  method-complexity:
+    config:
+      threshold: 15
+  method-count:
+    config:
+      threshold: 50
+  method-lines:
+    config:
+      threshold: 50
+  similar-code:
+    config:
+      threshold: 50
+  identical-code:
+    config:
+      threshold: 25
+exclude_patterns:
+  - cjs/
+  - esm/
+  - umd/
+  - index.d.ts
