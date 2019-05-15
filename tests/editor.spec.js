@@ -116,7 +116,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     };
     expect(editorCreateStub).toHaveBeenCalledWith(null, editorOptions);
     wrapper.setProps({ readOnly: false });
-    expect(updateOptionsStub).toHaveBeenCalledWith({...editorOptions, readOnly: false });
+    expect(updateOptionsStub).toHaveBeenCalledWith({ ...editorOptions, readOnly: false });
   });
 
   test('should update Editor content and language on props change', () => {

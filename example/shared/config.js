@@ -35,7 +35,7 @@ const EditorConfig = ({ options, onOptionChange }: Props) => (
             &nbsp;Hide Mini Map
           </label>
         </div>
-        <hr className='dropdown-divider'/>
+        <hr className='dropdown-divider' />
         <div className='dropdown-item'>
           <label className='checkbox'>
             <input
