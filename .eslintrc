@@ -3,7 +3,8 @@
   "extends": [
     "eslint:recommended",
     "standard",
-    "standard-react"
+    "standard-react",
+    "jest-enzyme"
   ],
   "env": {
     "es6": true,

@@ -13,6 +13,7 @@ jobs:
           - "$HOME/.npm"
           - $HOME/.yarn-cache
       script:
+        - yarn lint
         - yarn test
         - yarn build
       before_script:

@@ -58,6 +58,7 @@
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
     "eslint": "5.0.1",
+    "eslint-config-jest-enzyme": "7.0.2",
     "eslint-config-standard": "11.0.0",
     "eslint-config-standard-react": "6.0.0",
     "eslint-plugin-import": "2.13.0",
@@ -87,10 +88,10 @@
     "webpack-dev-server": "3.3.1"
   },
   "peerDependencies": {
+    "monaco-editor-webpack-plugin": "1.7.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "webpack": "^4.0.0",
-    "monaco-editor-webpack-plugin": "1.7.0"
+    "webpack": "^4.0.0"
   },
   "jest": {
     "collectCoverage": true,
