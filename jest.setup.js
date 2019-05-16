@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-import Enzyme, { shallow, render, mount } from 'enzyme';
+import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 /** Configure JSDOM */
