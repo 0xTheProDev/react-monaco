@@ -1,6 +1,7 @@
 import React from 'react';
 import * as monaco from 'monaco-editor';
 
+import { shallow } from 'enzyme';
 import { MonacoCodeEditor } from '../src/editor';
 
 describe('Test Monaco Standalone Code Editor', () => {
@@ -124,6 +125,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     const wrapper = shallow(<MonacoCodeEditor />);
     wrapper.setProps({ language: LANGUAGE, value: VALUE, theme: THEME });
     expect(updateOptionsStub).toHaveBeenCalled();
+    expect(getModelStub).toHaveBeenCalled();
     expect(editorSetModelLanguageStub).toHaveBeenCalledWith(null, LANGUAGE);
     expect(editorSetThemeStub).toHaveBeenCalledWith(THEME);
     expect(setValueStub).toHaveBeenCalledWith(VALUE);

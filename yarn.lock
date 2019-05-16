@@ -3381,11 +3381,6 @@ escodegen@^1.11.0, escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-jest-enzyme@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-jest-enzyme/-/eslint-config-jest-enzyme-7.0.2.tgz#47716e9db6c0610f27de61c3cf7771969c81bbea"
-  integrity sha512-gVRdYFSCQ6VFlcK4Tff+q1J9Qr0IYBgRRYkK+wT9mv4CIjtON2JqlABTT31lLk81GYuoUTzpQ106TEsUtYLO5Q==
-
 eslint-config-standard-jsx@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-5.0.0.tgz#4abfac554f38668e0078c664569e7b2384e5d2aa"

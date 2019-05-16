@@ -28,11 +28,6 @@ Object.defineProperty(document, 'queryCommandSupported', {
 /** React 16 Enzyme adapter */
 Enzyme.configure({ adapter: new Adapter() });
 
-/** Make Enzyme functions available in all test files without importing */
-global.shallow = shallow;
-global.render = render;
-global.mount = mount;
-
 /** Utility function to copy properties from JSDOM to global */
 function copyProps(src, target) {
   Object.defineProperties(target, {

@@ -58,7 +58,6 @@
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
     "eslint": "5.0.1",
-    "eslint-config-jest-enzyme": "7.0.2",
     "eslint-config-standard": "11.0.0",
     "eslint-config-standard-react": "6.0.0",
     "eslint-plugin-import": "2.13.0",
