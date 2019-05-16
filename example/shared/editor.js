@@ -23,7 +23,7 @@ const Editor = ({ language, code, theme, options, onContentChange }: Props) => (
             value: code,
             language,
             onContentChange,
-            theme
+            theme,
           }}
         />
       </article>

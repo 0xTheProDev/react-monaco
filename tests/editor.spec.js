@@ -1,6 +1,7 @@
 import React from 'react';
 import * as monaco from 'monaco-editor';
 
+import { shallow } from 'enzyme';
 import { MonacoCodeEditor } from '../src/editor';
 
 describe('Test Monaco Standalone Code Editor', () => {
@@ -67,7 +68,7 @@ describe('Test Monaco Standalone Code Editor', () => {
 
   test('should render children if provided with one', () => {
     const DummyComponent = () => <h1>Hello World!</h1>;
-    const wrapper = shallow(<MonacoCodeEditor><DummyComponent/></MonacoCodeEditor>);
+    const wrapper = shallow(<MonacoCodeEditor><DummyComponent /></MonacoCodeEditor>);
     expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 
@@ -116,7 +117,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     };
     expect(editorCreateStub).toHaveBeenCalledWith(null, editorOptions);
     wrapper.setProps({ readOnly: false });
-    expect(updateOptionsStub).toHaveBeenCalledWith({...editorOptions, readOnly: false });
+    expect(updateOptionsStub).toHaveBeenCalledWith({ ...editorOptions, readOnly: false });
   });
 
   test('should update Editor content and language on props change', () => {
@@ -124,6 +125,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     const wrapper = shallow(<MonacoCodeEditor />);
     wrapper.setProps({ language: LANGUAGE, value: VALUE, theme: THEME });
     expect(updateOptionsStub).toHaveBeenCalled();
+    expect(getModelStub).toHaveBeenCalled();
     expect(editorSetModelLanguageStub).toHaveBeenCalledWith(null, LANGUAGE);
     expect(editorSetThemeStub).toHaveBeenCalledWith(THEME);
     expect(setValueStub).toHaveBeenCalledWith(VALUE);

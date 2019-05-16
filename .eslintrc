@@ -6,17 +6,24 @@
     "standard-react"
   ],
   "env": {
-    "es6": true
+    "es6": true,
+    "browser": true,
+    "jest": true
   },
   "plugins": [
     "react"
   ],
   "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "sourceType": "module"
   },
   "rules": {
     "comma-dangle": [ "error", "always-multiline" ],
     "no-extra-boolean-cast": "warn",
+    "one-var": 0,
     "react/jsx-boolean-value": 0,
     "semi": [ "error", "always" ],
     "space-before-function-paren": 0

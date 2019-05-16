@@ -1,4 +1,4 @@
-const c_template =
+const cTemplate =
 `#include <stdio.h>
 
 int main(void) {
@@ -7,7 +7,7 @@ int main(void) {
 }
 `;
 
-const cpp_template =
+const cppTemplate =
 `#include <iostream>
 using namespace std;
 
@@ -17,7 +17,7 @@ int main() {
 }
 `;
 
-const java_template =
+const javaTemplate =
 `import java.io.*;
 
 class Molan {
@@ -27,13 +27,13 @@ class Molan {
 }
 `;
 
-const py_template =
+const pyTemplate =
 `# Write Codes Here
 `;
 
 export default {
-  'c': c_template,
-  'cpp': cpp_template,
-  'java': java_template,
-  'python': py_template,
+  'c': cTemplate,
+  'cpp': cppTemplate,
+  'java': javaTemplate,
+  'python': pyTemplate,
 };

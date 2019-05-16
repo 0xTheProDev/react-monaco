@@ -15,6 +15,6 @@ export function convertTheme(theme: string): string {
   }
 
   return theme;
-};
+}
 
-export function noop(): void {};
+export function noop(): void {}

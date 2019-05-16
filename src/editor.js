@@ -153,26 +153,25 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
 
   updateEditor(prevProps: IMonacoCodeEditorProps) {
     const {
+      editor,
+    } = this;
+
+    const {
       language: oldLanguage,
       theme: oldTheme,
       value: oldValue,
     } = prevProps;
 
     const {
-      editor,
-      props,
-    } = this;
-
-    const {
       language,
       theme,
       value,
-    } = props;
+    } = this.props;
 
     const editorOptions: monaco.editor.IEditorOptions = this.getEditorOptions();
     /* istanbul ignore else  */
     if (Object.keys(editorOptions).length > 0) {
-      this.editor.updateOptions(editorOptions);
+      editor.updateOptions(editorOptions);
     }
 
     if (language !== oldLanguage) {
@@ -192,12 +191,11 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
   disposeEditor() {
     const {
       editor,
-      props,
     } = this;
 
     const {
       editorWillUnmount,
-    } = props;
+    } = this.props;
 
     /* istanbul ignore else  */
     if (editor) {
@@ -232,7 +230,6 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
   render() {
     const {
       editorNode,
-      props,
     } = this;
 
     const {
@@ -240,7 +237,7 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
       height,
       width,
       wrapperClass,
-    } = props;
+    } = this.props;
 
     const style = {
       height: (typeof height === 'number' ? `${height}px` : height),

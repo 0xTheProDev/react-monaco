@@ -39,7 +39,7 @@ class App extends React.Component<Props, State> {
 
   onOptionChange = (newOpt: Object) => {
     const { options: oldOpt } = this.state;
-    this.setState({ options: { ...oldOpt, ...newOpt }});
+    this.setState({ options: { ...oldOpt, ...newOpt } });
   };
 
   render() {
@@ -54,7 +54,7 @@ class App extends React.Component<Props, State> {
       onLanguageChange,
       onContentChange,
       onThemeChange,
-      onOptionChange
+      onOptionChange,
     } = this;
 
     return (
