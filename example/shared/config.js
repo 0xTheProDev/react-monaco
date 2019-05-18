@@ -2,7 +2,12 @@
 import React from 'react';
 
 type Props = {
-  options: Object,
+  options: {
+    hideLineNumbers: boolean,
+    hideMinimap: boolean,
+    hideVerticalScrollbar: boolean,
+    hideHorizontalScrollbar: boolean,
+  },
   onOptionChange: (newOpt: Object) => void,
 };
 
@@ -32,7 +37,7 @@ const EditorConfig = ({ options, onOptionChange }: Props) => (
               checked={options.hideMinimap}
               onChange={() => onOptionChange({ hideMinimap: !options.hideMinimap })}
             />
-            &nbsp;Hide Mini Map
+            &nbsp;Hide Mini Map {options.hideLineNumbers}
           </label>
         </div>
         <hr className='dropdown-divider' />

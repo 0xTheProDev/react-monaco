@@ -184,6 +184,8 @@ export class MonacoCodeEditor extends React.PureComponent<IMonacoCodeEditorProps
     }
 
     if (value !== oldValue) {
+      console.log('value triggered');
+
       editor.setValue(value);
     }
   }

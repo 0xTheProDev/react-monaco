@@ -19,7 +19,12 @@ class App extends React.Component<Props, State> {
     language: 'c',
     code: template['c'],
     theme: 'light',
-    options: {},
+    options: {
+      hideLineNumbers: false,
+      hideMinimap: false,
+      hideVerticalScrollbar: false,
+      hideHorizontalScrollbar: false,
+    },
   };
 
   onLanguageChange = (ev: React.SyntheticEvent<HTMLSelectElement, React.ChangeEvent>) => {
