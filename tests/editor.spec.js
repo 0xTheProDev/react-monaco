@@ -60,19 +60,19 @@ describe('Test Monaco Standalone Code Editor', () => {
     updateOptionsStub.mockClear();
   });
 
-  test('should render Editor element after component mounts', () => {
+  it('should render Editor element after component mounts', () => {
     const editorDidMountStub = jest.fn();
     shallow(<MonacoCodeEditor editorDidMount={editorDidMountStub} />);
     expect(editorDidMountStub).toHaveBeenCalledWith(editorInstanceStub);
   });
 
-  test('should render children if provided with one', () => {
+  it('should render children if provided with one', () => {
     const DummyComponent = () => <h1>Hello World!</h1>;
     const wrapper = shallow(<MonacoCodeEditor><DummyComponent /></MonacoCodeEditor>);
     expect(wrapper.find(DummyComponent)).toHaveLength(1);
   });
 
-  test('should resize to height if provided with props', () => {
+  it('should resize to height if provided with props', () => {
     const HEIGHT = 48, WIDTH = 48;
     const wrapper = shallow(<MonacoCodeEditor height={HEIGHT} width={WIDTH} />);
     expect(wrapper.find('.monaco-editor-container').props().style).toEqual({
@@ -81,7 +81,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     });
   });
 
-  test('should convert props to proper editor option', () => {
+  it('should convert props to proper editor option', () => {
     const LANGUAGE = 'c', VALUE = 'Some test code', THEME = 'my-theme';
     const wrapper = shallow(
       <MonacoCodeEditor
@@ -120,7 +120,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     expect(updateOptionsStub).toHaveBeenCalledWith({ ...editorOptions, readOnly: false });
   });
 
-  test('should update Editor content and language on props change', () => {
+  it('should update Editor content and language on props change', () => {
     const LANGUAGE = 'c', VALUE = 'Some test code', THEME = 'my-theme';
     const wrapper = shallow(<MonacoCodeEditor />);
     wrapper.setProps({ language: LANGUAGE, value: VALUE, theme: THEME });
@@ -131,7 +131,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     expect(setValueStub).toHaveBeenCalledWith(VALUE);
   });
 
-  test('should invoke callback in case of language change', () => {
+  it('should invoke callback in case of language change', () => {
     const
       OLDLANG = 'a',
       NEWLANG = 'b',
@@ -142,7 +142,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     expect(onLanguageChangeCbStub).toHaveBeenCalledWith(NEWLANG, OLDLANG, event);
   });
 
-  test('should invoke callback in case of content change', () => {
+  it('should invoke callback in case of content change', () => {
     const
       OLDVALUE = 'a',
       NEWVALUE = 'b',
@@ -154,7 +154,7 @@ describe('Test Monaco Standalone Code Editor', () => {
     expect(onContentChangeCbStub).toHaveBeenCalledWith(NEWVALUE, OLDVALUE, event);
   });
 
-  test('should dispose Editor before component unmounts', () => {
+  it('should dispose Editor before component unmounts', () => {
     jest.useFakeTimers();
     const editorWillUnmountStub = jest.fn();
     const wrapper = shallow(<MonacoCodeEditor editorWillUnmount={editorWillUnmountStub} />);
