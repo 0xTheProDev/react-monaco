@@ -1,17 +1,19 @@
 language: node_js
+node_js: 10
 branches:
   - master
 jobs:
   include:
-    - stage: CI_test
-      node_js: 8
-      language: node_js
+    - stage: CI
+      if: |
+        branch = master AND \
+        type = pull_request
       cache:
         yarn: true
         directories:
           - node_modules
           - "$HOME/.npm"
-          - $HOME/.yarn-cache
+          - "$HOME/.yarn-cache"
       script:
         - yarn lint
         - yarn test
@@ -22,3 +24,14 @@ jobs:
         - ./cc-test-reporter before-build
       after_script:
         - ./cc-test-reporter after-build
+    - stage: CD
+      if: |
+        branch = master AND \
+        type = push
+      before_script:
+        - echo "//npm.pkg.github.com/:_authToken=" > ./.npmrc
+        - echo $ACCESS_TOKEN >> ./.npmrc
+        - cat ./.npmrc.conf >> ./.npmrc
+      script:
+        - yarn publish
+
